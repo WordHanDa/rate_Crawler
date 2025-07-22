@@ -2,20 +2,20 @@
     "version": 2,
     "builds": [
       {
-        "src": "main.py",
+        "src": "api/*.py",
         "use": "@vercel/python"
       }
     ],
     "routes": [
       {
-        "src": "/(.*)",
-        "dest": "main.py"
+        "src": "/api/(.*)",
+        "dest": "api/$1.py"
       }
     ],
     "crons": [
         {
-          "path": "/api/my-cron-job",
-          "schedule": "0 0 * * *"
+          "path": "/api/cron",
+          "schedule": "0 */6 * * *"
         }
       ]
   }

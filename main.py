@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from dotenv import load_dotenv
 import os
+from http.server import BaseHTTPRequestHandler
+from ..main import *  # Import your main crawler logic
 
 # Load environment variables
 load_dotenv()
@@ -110,3 +112,17 @@ if response.status_code == 200:
 
 else:
     print("❌ 無法取得網頁內容")
+
+def handler(request, response):
+    try:
+        # Your existing crawler code will be executed here
+        # The code from main.py will run when this endpoint is called
+        return {
+            'statusCode': 200,
+            'body': 'Cron job executed successfully'
+        }
+    except Exception as e:
+        return {
+            'statusCode': 500,
+            'body': f'Error executing cron job: {str(e)}'
+        }
